@@ -4,15 +4,15 @@
 
 // init
 
-DigitalIn switch_user(D2);
-DigitalIn motionSensor(BUTTON1);
+DigitalIn switch_user(D2);// house light switch 
+DigitalIn motionSensor(BUTTON1); // pir sensor example
 
 DigitalOut lightSource(LED1);
 
 // decelartion of functions
-void inputInit();
+void inputInit(); 
 void outputInit();
-bool lightState;
+bool lightState; // is the lights on or off
 
 
 //DigitalIn lightSensor(D2);
@@ -24,7 +24,7 @@ int main(){
 
     while(true){
 
-    if (motionSensor==ON && lightState==ON){
+    if (motionSensor==ON && lightState==ON){ // if motion is detected and lights are on turn them of
         lightSource= OFF;
         lightState = OFF;
 
@@ -33,13 +33,13 @@ int main(){
     if (lightState ==ON){
         lightSource= ON;
     }
-    if(switch_user==ON){
+    if(switch_user==ON){ // if switch on, turn lights on
         lightState = ON;
     }
     }
 
 }
 
-void inputInit(){
+void inputInit(){ // setup buttons 
     switch_user.mode(PullDown);
 }
