@@ -22,7 +22,6 @@ bool daySenEnable = true; // does the user want to enable the sensor %%%%%% get 
 
 
 // decelartion of  functions
-
 void isDay(bool &lightState); // main function takes a var and changes its value
 
 
@@ -45,3 +44,4 @@ void isDay(bool &lightState){
         }
     }  
 }
+
