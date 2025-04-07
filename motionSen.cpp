@@ -12,28 +12,27 @@ Motion Sensor SubSystem:
 
 // init  %%%%%%%%% change nucleo pins
 // --input
-DigitalIn hSwitch(D2); // house switch
-DigitalIn motionSen(D3); // pir, motion sensor
+
+DigitalIn motionSen(PB_3); // pir, motion sensor
 // --output
-DigitalOut lightSource(D4); // house bulb
-
 // decelartion of global variables
-bool lightState; // are the lights on or off
 int timeOut; // the time  before motion sensor needs rettrigering 
-
+bool motionSenEnable = true;
 // decelartion of  functions
 
-void aainputInit();
-void aaoutputInit();
+void isMotion(bool &lightState);
 
-int mainaa(){
-    aainputInit();
-    while(true){
+void isMotion(bool &lightState){
+    if(motionSenEnable){
+        if(motionSen){
+            printf("Motion is on, light is on\n");
 
-    }
+            lightState = true;
+        } 
+        else{
+            lightState = false;
 
-}
+        } }  }
 
-void aainputInit(){
-    hSwitch.mode(PullDown);
-}
+void inputInit(){ // setup buttons 
+    motionSen.mode(PullUp);}

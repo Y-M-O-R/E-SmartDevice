@@ -10,16 +10,12 @@ Heat Sensor:
 
 // init  %%%%%%%%% change nucleo pins
 // --input
-AnalogIn tempSen(D2); // thermistor used to meausre temp
-
-// --output
-DigitalOut heat(D4);
+AnalogIn tempSen(PA_4); // thermistor used to meausre temp
 
 
 // decelartion of global variables
 
-float tempRead = 0.0;
-float tempSet = 18.0; 
+float tempSet = 0.2; 
 bool tempSenEnable = true;
 
 
@@ -28,7 +24,9 @@ void isHot(bool &heatState);
 
 void isHot(bool &heatState){
     if(tempSenEnable){
-        tempRead = tempSen.read();
+        float tempRead = tempSen.read();
+        printf("temp reading: %.2f\n", tempRead);
+
         if(tempRead >= tempSet){
             if(heatState){
                 heatState = false;
